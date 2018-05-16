@@ -1,0 +1,112 @@
+template 的简单使用：
+    1、代码块使用下面的内容包
+        js使用：
+            var html = template("Child", data);
+            $("Parent").html(html);
+        html 内使用：
+        <div id="Parent">
+            <script type="text/html" id="Child">
+                要渲染的代码块
+            </script>
+        </div>
+    2.直接渲染数据 以 data1 为例
+        data1:{"address":"藏族","education":"大专","name":"张三","sex":"女"}
+        js使用：
+            var html = template("Child", data1);
+            $("Parent").html(html);
+        html 内使用：
+            <div id="Parent">
+              <script type="text/html" id="Child">
+                  <div>name:{{name}}</div>
+                  <div>sex:{{sex}}</div>
+                  <div>education:{{education}}</div>
+                  <div>address:{{address}}</div>
+              </script>
+            </div>
+    3、if 条件渲染
+        data = {
+            flag : 1 // flag  还有可能是 2,3,4,5
+        }
+        js使用：
+            var html = template("Child", data);
+            $("Parent").html(html);
+        html 内使用：
+            一、
+            <div id="Parent">
+                <script type="text/html" id="bannerChild">
+                     {{if flag == 1}}
+                         逻辑处理
+                     {{/if}}
+                </script>
+            </div>
+            二、
+            <div id="Parent">
+                <script type="text/html" id="bannerChild">
+                     {{if flag == 1}}
+                         逻辑处理
+                     {{else}}
+                         逻辑处理
+                     {{/if}}
+                </script>
+            </div>
+            三、
+             <div id="Parent">
+                <script type="text/html" id="bannerChild">
+                     {{if flag == 1}}
+                         逻辑处理
+                     {{/if}}
+                     {{if flag == 2}}
+                         逻辑处理
+                     {{/if}}
+                     {{if flag == 3}}
+                          逻辑处理
+                     {{/if}}
+                </script>
+              </div>
+    4、循环代码块 ， 以 data 为例
+        这里是一些静态数据：
+        data:{
+            data0:[{"address":"藏族","education":"大专","name":"张三","sex":"女"},{"address":"汉族","education":"大专","name":"李四","sex":"男"},{"address":"汉族","education":"大专","name":"王五","sex":"男"},{"address":"汉族","education":"大本","name":"赵六 ","sex":"男"},{"address":"汉族","education":"大专","name":"孙七","sex":"女"},{"address":"汉族","education":"大本","name":"周八","sex":"男"},{"address":"汉族","education":"小学","name":"吴九","sex":"男"},{"address":"汉族","education":"大专","name":"郑十","sex":"男"},
+                {"address":"汉族","education":"大专","name":"李二","sex":"女"},
+                {"address":"汉族","education":"大专","name":"陈一","sex":"男"}]
+        }
+        4.1、直接使用
+            js使用：
+                var html = template("Child", data);
+                $("Parent").html(html);
+            html 内使用：
+                <div id="Parent">
+                    <script type="text/html" id="bannerChild">
+                         {{each data0 as v}}
+                             <div>name:{{v.name}}</div>
+                             <div>sex:{{v.sex}}</div>
+                             <div>education:{{v.education}}</div>
+                             <div>address:{{v.address}}</div>
+                         {{/each}}
+                    </script>
+                </div>
+        4.2 嵌套if条件使用，并在某个对象上做特殊处理 i 是下标  从0开始
+            js使用：
+                var html = template("Child", data);
+                $("Parent").html(html);
+            html 内使用：
+                <div id="Parent">
+                    <script type="text/html" id="bannerChild">
+                         {{each data0 as v i}}
+                            {{if i == 0}}
+                                <div>name:{{v.name}} 选中了</div>
+                                <div>sex:{{v.sex}}</div>
+                                <div>education:{{v.education}}</div>
+                                <div>address:{{v.address}}</div>
+                            {{else}}
+                                <div>name:{{v.name}}</div>
+                                <div>sex:{{v.sex}}</div>
+                                <div>education:{{v.education}}</div>
+                                <div>address:{{v.address}}</div>
+                            {{/if}}
+                         {{/each}}
+                    </script>
+                </div>
+
+
+
