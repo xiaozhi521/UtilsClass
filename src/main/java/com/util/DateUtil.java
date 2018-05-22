@@ -1,0 +1,129 @@
+package com.util;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ *  日期工具类
+ *  yyyy : 年
+ *  MM ： 月
+ *  dd ： 日
+ *  hh ： 12小时制  HH : 24小时制
+ *  mm ：分
+ *  ss ：秒
+ *  S ：毫秒
+ *  csdn url ： https://blog.csdn.net/mqf163/article/details/53364092
+ */
+public class DateUtil {
+    //创建一个代表系统当前日期的Calendar对象
+    static Calendar cal = Calendar.getInstance();
+    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");
+
+
+    /**
+     *  根据时间返回时间戳
+     * @param date 字符串： 例如：2016-03-10 07:18:39.763
+     * @return  返回：1457565519763
+     */
+    public static long getTimeMillis(String date){
+        return getFormatDate(date).getTime();
+    }
+    /**
+     *
+     * @param date 2016-03-10 07:18:39.763
+     * @return  Thu Mar 10 07:18:39 CST 2016
+     */
+    public static Date getFormatDate(String date){
+        try {
+            return sdf.parse(date);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
+    /**
+     * 格式化时间日期
+     * @return 2016-03-10 07:18:39.763
+     */
+    public static String getFormatDate(){
+        Date d = new Date();
+        return sdf.format(d);
+    }
+    /**
+     * 格式化时间日期
+     * @return 2016-03-10 07:18:39.763
+     */
+    public static String getFormatDate(long timeMillis){
+        Date d = new Date(timeMillis);
+        return sdf.format(d);
+    }
+    /**
+     * 获取当前的时间： xxxx年xx月xx日 xx:xx:xx
+     * @return
+     */
+    public static String getCurrentDate(){
+        return cal.get(Calendar.YEAR) + "年" + (cal.get(Calendar.MONTH)+1) + "月" + cal.get(Calendar.DAY_OF_MONTH) + "日  " + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE )+ ":" + cal.get(Calendar.SECOND);
+    }
+    /**
+     * 获取当前分钟中的秒
+     * @return
+     */
+    public static int getMillion(){
+        return cal.get(Calendar.SECOND);
+    }
+    /**
+     * 获取当前小时中的分钟
+     * @return
+     */
+    public static int getMinute(){
+        return cal.get(Calendar.MINUTE);
+    }
+    /**
+     * 获取当天的第几个小时
+     * @return
+     */
+    public static int getHour(){
+        return cal.get(Calendar.HOUR_OF_DAY);
+
+    }
+    /**
+     * 获取当前月中的第几天
+     * @return
+     */
+    public static int getDay(){
+        return cal.get(Calendar.DAY_OF_MONTH);
+    }
+    /**
+     * 获取当前的月份
+     * @return
+     */
+    public static int getMonth(){
+        return (cal.get(Calendar.MONTH)+1);
+    }
+    /**
+     * 获取当前的年份
+     * @return
+     */
+    public static int getYear(){
+        return cal.get(Calendar.YEAR);
+    }
+
+    /**
+     * 获取某月的第几个周
+     * @return int
+     */
+    public static int getWeekOfMonth(){
+        return cal.WEEK_OF_MONTH;
+    }
+
+    /**
+     * 获取当前的时间毫秒数
+     * @return
+     */
+    public static long getCurrenTimeMillis(){
+        return System.currentTimeMillis();
+    }
+}
