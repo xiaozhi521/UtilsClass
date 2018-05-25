@@ -3,6 +3,10 @@
         void setAlignment() 方法 可以设定段落的对齐方式，
             可以传 1（居中对齐）,2（右对齐）,3（左对齐）,8,0（不设置默认左对齐）；
             或者字符串：center,Right,Justify,JustifyAll,''
+            Element.ALIGN_LEFT， （左对齐）
+            Element.ALIGN_CENTER、 （居中对齐）
+            Element.ALIGN_RIGHT， （右对齐）
+            Element.ALIGN_JUSTIFIED（不设置默认左对齐）
         Paragraph head = new Paragraph("这是标题",headfont);
         head.setAlignment(1);
         head.setAlignment("center");

@@ -44,6 +44,32 @@ public class PDFUtil {
             e.printStackTrace();
         }
     }
+    public static void createChunkPdf(){
+        try {
+            Document document = new Document(PageSize.A4);
+            PdfWriter.getInstance(document, new FileOutputStream(System.currentTimeMillis() + ".PDF"));
+            document.open();
+            //设置标题
+            Chunk chunk = new Chunk("这是Chunk",headfont);
+//            chunk.set
+//            head.setAlignment(1);
+//            head.setSpacingAfter(10.0f);
+//            head.setAlignment("Center");
+            document.add(chunk);
+            //设置正文
+            Paragraph test1 = new Paragraph("这里输入文章报告的正文。首段通常为文章的内容概述，简单概述文章的观点：针对某个问题，通过一定的方法，得到了某个结论。",textfont);
+            test1.setFirstLineIndent(26);
+            document.add(test1);
+
+            document.close();
+        }  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
     public static void createParagraphPdf(){
         try {
             Document document = new Document(PageSize.A4);
