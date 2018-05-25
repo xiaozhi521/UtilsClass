@@ -1,5 +1,6 @@
 package com.util.pdf;
 
+import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
@@ -27,6 +28,7 @@ public class PDFUtil {
     private static Font keyfont;// 设置字体大小
     private static Font textfont;// 设置字体大小
     private static Font redfont;// 设置字体大小
+    private static Font footerfont;// 设置字体大小
 
     static{
         BaseFont bfChinese;
@@ -37,6 +39,7 @@ public class PDFUtil {
             keyfont = new Font(bfChinese, 12, Font.BOLD);// 设置字体大小
             textfont = new Font(bfChinese, 12, Font.NORMAL);// 设置字体大小
             redfont = new Font(bfChinese, 14, Font.BOLD,Color.RED);// 红色：设置字体大小
+            footerfont = new Font(bfChinese, 10, Font.NORMAL,Color.BLACK);//设置页底字体大小
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,6 +89,40 @@ public class PDFUtil {
         }
     }
     /**
+     *  Rectangle 对象操作
+     */
+    public static void createRectanglePDF() {
+        try{
+            Rectangle rectangle = new Rectangle(PageSize.A4);
+            //设置背景色
+            rectangle.setBackgroundColor(Color.CYAN);
+            //横向打印
+            rectangle.rotate();
+            //设置边框
+            rectangle.setBorder(Element.ALIGN_CENTER);
+            Document document = new Document(rectangle);
+            PdfWriter.getInstance(document, new FileOutputStream(System.currentTimeMillis() + ".PDF"));
+
+            //第一个参数默认显示页数 ，  第二个参数传 true  显示页数，传 false  不显示页数
+            HeaderFooter footer = new HeaderFooter(new Phrase("",footerfont),true);
+            footer.setAlignment(1);
+            footer.setBorder(Rectangle.NO_BORDER);
+            document.setFooter(footer);
+
+            document.open();
+            document.add(new Paragraph("Hello Rectangle"));
+
+            document.newPage();
+
+            document.add(new Paragraph("Hello World1,this page 2"));
+            document.close();
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (DocumentException e){
+            e.printStackTrace();
+        }
+    }
+    /**
      * 创建简单的pdf
      */
     public static void createPDF() {
@@ -98,6 +135,10 @@ public class PDFUtil {
             document.open();
             //4、向文档中添加内容。
             document.add(new Paragraph("Hello World"));
+
+            document.newPage();
+
+            document.add(new Paragraph("Hello World1,this page 2"));
             //5、关闭文档。
             document.close();
         }catch (FileNotFoundException e){

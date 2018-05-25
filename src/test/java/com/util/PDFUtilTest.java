@@ -5,7 +5,17 @@ import org.junit.Test;
 
 public class PDFUtilTest {
     @Test
-    public void createPDF(){
+    public void createParagraphPdf(){
         PDFUtil.createParagraphPdf();
+    }
+
+    @Test
+    public void createRectanglePDF(){
+        PDFUtil.createRectanglePDF();
+    }
+
+    @Test
+    public void createPDF(){
+        PDFUtil.createPDF();
     }
 }

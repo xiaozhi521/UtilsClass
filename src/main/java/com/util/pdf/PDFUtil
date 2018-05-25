@@ -5,9 +5,9 @@
     4、向文档中添加内容 new Paragraph()。
     5、关闭文档。
 com.lowagie.text.Document对象的构建函数有三个，分别是：
-    public Document();
+    public Document(); 默认方法：A4，36，36，36，36
     public Document(Rectangle pageSize);
-    public Document(Rectangle pageSize,int marginLeft,int marginRight,int marginTop,int marginBottom);
+    public Document(Rectangle pageSize,int marginLeft,int marginRight,int marginTop,int marginBottom);分别指pdf页面大小和内容距离文档边的距离
 设定文档属性
     在文档打开之前，可以设定文档的标题、主题、作者、关键字、装订方式、创建者、生产者、创建日期等属性，调用的方法分别是：
         public boolean addTitle(String title)
@@ -36,6 +36,14 @@ com.lowagie.text.Document对象的构建函数有三个，分别是：
     如是否单页显示、是否全屏显示、是否隐藏状态条等属性。
 
 　　另外，iText也提供了对PDF文件的安全保护，通过书写器（Writer）的setEncryption方法，可以设定文档的用户口令、只读、可打印等属性。
+文档方法
+    add()-添加内容，newPage()-下一页， addDocListener-监听器
+
+    getPageNumber()-第几页 ，getPageSize-页面大小 ，
+
+    top|left|right|bottom-页面预定义位置，置页眉页脚或者页码时有用，内部调用Rectangle的属性
+
+    setJavaScript_onLoad（添加js）等等
 添加文档内容
     所有向文档添加的内容都是以对象为单位的，如Phrase、Paragraph、Table、Graphic对象等。比较常用的是段落(Paragraph)对象，用于向文档中添加一段文字。
 
