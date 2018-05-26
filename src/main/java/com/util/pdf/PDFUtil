@@ -1,3 +1,11 @@
+com.lowagie.text.Paragraph：表示一个缩进的文本段落，在段落中，你可以设置对齐方式，缩进，段落前后间隔等。
+com.lowagie.text.Chapter：表示PDF的一个章节，他通过一个Paragraph类型的标题和整形章数创建。
+com.lowagie.text.Font：这个类包含了所有规范好的字体，包括family of font，大小，样式和颜色，所有这些字体都被声明为静态常量。
+com.lowagie.text.List：表示一个列表；
+com.lowagie.text.pdf.PDFPTable：表示一个表格；
+com.lowagie.text.Anchor：表示一个锚，类似于HTML页面的链接。
+com.lowagie.text.pdf.PdfWriter：当这个PdfWriter被添加到PdfDocument后，所有添加到Document的内容将会写入到与文件或网络关联的输出流中。
+com.lowagie.text.pdf.PdfReader：用于读取PDF文件；
 生成PDF文档需要5个步骤：
     1、建立com.lowagie.text.Document对象的实例。
     2、建立一个书写器(Writer) 与document对象关联，通过书写器(Writer) 可以将文档写入到磁盘中

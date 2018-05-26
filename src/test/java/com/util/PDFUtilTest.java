@@ -5,6 +5,14 @@ import org.junit.Test;
 
 public class PDFUtilTest {
     @Test
+    public void createPhrasePdf(){
+        PDFUtil.createPhrasePdf();
+    }
+    @Test
+    public void createChunkPdf(){
+        PDFUtil.createChunkPdf();
+    }
+    @Test
     public void createParagraphPdf(){
         PDFUtil.createParagraphPdf();
     }

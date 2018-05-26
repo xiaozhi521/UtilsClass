@@ -29,6 +29,8 @@ public class PDFUtil {
     private static Font textfont;// 设置字体大小
     private static Font redfont;// 设置字体大小
     private static Font footerfont;// 设置字体大小
+    private static Font chunkfont;// 设置chunk 字体大小
+    private static Font phrasefont;// 设置chunk 字体大小
 
     static{
         BaseFont bfChinese;
@@ -40,7 +42,44 @@ public class PDFUtil {
             textfont = new Font(bfChinese, 12, Font.NORMAL);// 设置字体大小
             redfont = new Font(bfChinese, 14, Font.BOLD,Color.RED);// 红色：设置字体大小
             footerfont = new Font(bfChinese, 10, Font.NORMAL,Color.BLACK);//设置页底字体大小
+            chunkfont = new Font(bfChinese, 14, Font.BOLDITALIC,Color.RED);//设置Chunk字体大小
+            phrasefont = new Font(bfChinese, 14, Font.BOLDITALIC,Color.MAGENTA);//设置phrase字体大小
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void createPhrasePdf(){
+        try {
+            Document document = new Document(PageSize.A4);
+            PdfWriter.getInstance(document, new FileOutputStream(System.currentTimeMillis() + ".PDF"));
+            document.open();
+            //设置标题
+            Paragraph head = new Paragraph("一念心清静，莲花处处开-Phrase",headfont);
+            head.setAlignment(1);
+            head.setSpacingAfter(10.0f);
+            head.setAlignment("Center");
+            document.add(head);
+            //设置正文
+            Paragraph test1 = new Paragraph("凡心千万，心轮静守，若悟不透，禅语一片，佛心一尊，看芸芸众生里，多少的人，不是一路艰辛，泪流满面，一路开怀，欢语一生，唯叹自己的人生路，荆棘坎坷，这也许上苍赠与的最好礼物，没历经风雨的人生，是无法承载，生命中的厚重！",textfont);
+            test1.setFirstLineIndent(26);
+            Chunk chunk1 = new Chunk("世间有两朵相同的花，一朵凋零一朵绽！",chunkfont);
+            chunk1.setBackground(Color.CYAN); //设置背景色
+            test1.add(chunk1);
+            //设置Phrase
+            Phrase phrase = new Paragraph("姻缘线，许相见，怎牵绊，难执念",phrasefont);
+            phrase.add(chunk1);
+//            test1.add(chunk1);  //执行此语句会将 "凡心千万....." 替换掉
+            document.add(phrase);
+
+            document.add(phrase);
+
+
+            document.close();
+        }  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
             e.printStackTrace();
         }
     }
@@ -50,16 +89,25 @@ public class PDFUtil {
             PdfWriter.getInstance(document, new FileOutputStream(System.currentTimeMillis() + ".PDF"));
             document.open();
             //设置标题
-            Chunk chunk = new Chunk("这是Chunk",headfont);
-//            chunk.set
-//            head.setAlignment(1);
-//            head.setSpacingAfter(10.0f);
-//            head.setAlignment("Center");
-            document.add(chunk);
+            Paragraph head = new Paragraph("这是Chunk",headfont);
+            head.setAlignment(1);
+            head.setSpacingAfter(10.0f);
+            head.setAlignment("Center");
+            document.add(head);
             //设置正文
             Paragraph test1 = new Paragraph("这里输入文章报告的正文。首段通常为文章的内容概述，简单概述文章的观点：针对某个问题，通过一定的方法，得到了某个结论。",textfont);
             test1.setFirstLineIndent(26);
+            Chunk chunk1 = new Chunk("世间有两朵相同的花，一朵凋零一朵绽！",chunkfont);
+            chunk1.setBackground(Color.CYAN); //设置背景色
+            test1.add(chunk1);
             document.add(test1);
+
+            //设置下划线
+            Chunk chunk2 = new Chunk("                          ",chunkfont);
+//            chunk2.setUnderline(0.2f, -2f); //对应下面第二个和第四个参数
+            chunk2.setUnderline(Color.BLACK, 0.1f, 0.1F, -2f, 0.0F, 0);
+            document.add(chunk2);
+
 
             document.close();
         }  catch (FileNotFoundException e) {
