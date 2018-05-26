@@ -1,9 +1,12 @@
 package com.util.pdf;
 
+import com.lowagie.text.Image;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import com.util.BugUtil;
 
@@ -48,6 +51,118 @@ public class PDFUtil {
             e.printStackTrace();
         }
     }
+    /**
+     * 创建Image对象
+     */
+    public static void createTablePdf(){
+        try {
+            Document document = new Document(PageSize.A4);
+            PdfWriter.getInstance(document, new FileOutputStream(System.currentTimeMillis() + ".PDF"));
+            document.open();
+            //设置标题
+            Paragraph head = new Paragraph("一念心清静，莲花处处开-Phrase",headfont);
+            head.setAlignment(1);
+            head.setSpacingAfter(10.0f);
+            head.setAlignment("Center");
+            document.add(head);
+            Paragraph paragraph = new Paragraph("第一个表格",textfont);
+            paragraph.setSpacingAfter(3.0f);
+            paragraph.setFirstLineIndent(45.0f);
+            paragraph.setAlignment(1);
+            document.add(paragraph);
+            //设置表格
+            PdfPTable table = new PdfPTable(4);//大小必须刚刚好，缺一个单元整行都没了
+            String[] content = { "地址：", "北京市", "详细地址", "海淀区"};
+            for (int i = 0; i < content.length; i++) {
+                PdfPCell cell = new PdfPCell();
+                cell.setVerticalAlignment(1);
+                cell.addElement(new Paragraph(content[i],textfont));
+                table.addCell(cell);
+            }
+            PdfPCell cell = new PdfPCell();
+            cell.addElement(new Paragraph("123",textfont));
+            table.addCell(cell);
+
+            cell = new PdfPCell();
+            cell.addElement(new Paragraph("123222",textfont));
+            table.addCell(cell);
+
+            cell = new PdfPCell();
+            cell.addElement(new Paragraph("123222",textfont));
+            table.addCell(cell);
+
+            cell = new PdfPCell();
+            cell.addElement(new Paragraph("123222",textfont));
+            table.addCell(cell);
+
+
+            cell = new PdfPCell();
+            cell.setColspan(2);
+            cell.addElement(new Paragraph("123222",textfont));
+            table.addCell(cell);
+
+            cell = new PdfPCell();
+            cell.setColspan(2);
+            cell.addElement(new Paragraph("123222",textfont));
+            table.addCell(cell);
+
+            cell = new PdfPCell();
+            cell.addElement(new Paragraph("123222111",textfont));
+            table.addCell(cell);
+
+            cell = new PdfPCell();
+            cell.addElement(new Paragraph("123222111",textfont));
+            table.addCell(cell);
+
+            cell = new PdfPCell();
+            cell.addElement(new Paragraph("123222111",textfont));
+            table.addCell(cell);
+
+            document.add(table);
+
+            document.add(new Paragraph("end",textfont));
+            document.close();
+        }  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 创建Image对象
+     */
+    public static void createImagePdf(){
+        try {
+            Document document = new Document(PageSize.A4);
+            PdfWriter.getInstance(document, new FileOutputStream(System.currentTimeMillis() + ".PDF"));
+            document.open();
+            //设置标题
+            Paragraph head = new Paragraph("一念心清静，莲花处处开-Phrase",headfont);
+            head.setAlignment(1);
+            head.setSpacingAfter(10.0f);
+            head.setAlignment("Center");
+            document.add(head);
+            //设置正文
+            Paragraph test1 = new Paragraph("三生缘，成诗篇，怎挥剑，难了断",textfont);
+            test1.setFirstLineIndent(26);
+            document.add(test1);
+
+            Image image = Image.getInstance("http://suo.im/54w1fi");
+            document.add(image);
+            document.close();
+        }  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 创建短语对象
+     */
     public static void createPhrasePdf(){
         try {
             Document document = new Document(PageSize.A4);
@@ -68,12 +183,9 @@ public class PDFUtil {
             //设置Phrase
             Phrase phrase = new Paragraph("姻缘线，许相见，怎牵绊，难执念",phrasefont);
             phrase.add(chunk1);
+
 //            test1.add(chunk1);  //执行此语句会将 "凡心千万....." 替换掉
             document.add(phrase);
-
-            document.add(phrase);
-
-
             document.close();
         }  catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -83,6 +195,9 @@ public class PDFUtil {
             e.printStackTrace();
         }
     }
+    /**
+     * 创建文本对象
+     */
     public static void createChunkPdf(){
         try {
             Document document = new Document(PageSize.A4);
@@ -118,6 +233,9 @@ public class PDFUtil {
             e.printStackTrace();
         }
     }
+    /**
+     * 创建段落对象
+     */
     public static void createParagraphPdf(){
         try {
             Document document = new Document(PageSize.A4);

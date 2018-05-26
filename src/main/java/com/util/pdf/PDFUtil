@@ -79,3 +79,36 @@ com.lowagie.text.Document对象的构建函数有三个，分别是：
 　　参数columns、rows、attributes分别为表格的列数、行数、表格属性。创建表格时必须指定表格的列数，而对于行数可以不用指定。
 
 　　建立表格之后，可以设定表格的属性，如：边框宽度、边框颜色、衬距（padding space 即单元格之间的间距）大小等属性。
+
+    创建表格时必须指定表格的列数，而对于行数可以不用指定。
+    建立表格，可以设定表格的属性：
+        设置表格的边逛大小
+            table.setBorderWidth(int arg);
+        设置表格的对齐方式： 1为居中对齐，2为右对齐，3为左对齐
+            table.setAlignment(1);
+        设置表格的边逛颜色
+            table.setborderColor(new Color(0,0,255));参数也可以Color.GREEN
+        设置每个单元格中的内容和边框的间距
+            table.setPadding(int arg);
+        设置单元格的边框和边框的间距
+            table.setSpacing(int arg);
+    创建单元格
+        无参数的构造函数
+            Cell cell = new Cell();
+        带String类型参数的构造函数,可以直接输入文字
+            Cell cell = new Cell(String arg);
+        带Element参数的构造函数，可以是元素，图片信息等
+            Cell cell = new Cell(Element arg);
+        设置该单元格跨表格的几行，不跨行则不用指定
+            cell.setRowspan(int arg);
+        设置该单元格跨表格的几列，不跨行则不用指定
+            cell.setColspan(int arg);
+        为单元格添加一个元素，可以是元素，图片信息等
+            cell.addElement(Element arg);
+        如果要添加中文，则需要如下:   fontChinese为上面定义的中文处理对象
+            cell.addElement(new Paragraph("中文", fontChinese));
+        往表格中直接添加字符串，
+            table.addCell(String arg);
+        往表格中添加单元格对象Cell
+            table.addCell(Cell cell);
+        往表格中添加单元格(cell)时，按自左向右，从上而下的次序添加

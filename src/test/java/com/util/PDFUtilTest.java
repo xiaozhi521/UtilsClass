@@ -5,6 +5,10 @@ import org.junit.Test;
 
 public class PDFUtilTest {
     @Test
+    public void createTablePdf(){
+        PDFUtil.createTablePdf();
+    }
+    @Test
     public void createPhrasePdf(){
         PDFUtil.createPhrasePdf();
     }
