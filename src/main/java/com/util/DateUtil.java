@@ -100,6 +100,17 @@ public class DateUtil {
      * 获取当前的月份
      * @return
      */
+    public static int getMonth(Date date){
+        Calendar c = Calendar.getInstance();
+        if (date != null)
+            c.setTime(date);
+        return (c.get(2) + 1);
+    }
+
+    /**
+     * 获取当前的月份
+     * @return
+     */
     public static int getMonth(){
         return (cal.get(Calendar.MONTH)+1);
     }
@@ -125,5 +136,9 @@ public class DateUtil {
      */
     public static long getCurrenTimeMillis(){
         return System.currentTimeMillis();
+    }
+
+    public static final Date parseDate(long milliSeconds) {
+        return new Date(milliSeconds);
     }
 }
