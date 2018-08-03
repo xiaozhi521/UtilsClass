@@ -7,7 +7,7 @@ import org.json.XML;
 
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Date;
+import java.util.*;
 import java.util.zip.GZIPInputStream;
 
 public class WeatherUtil {
@@ -15,8 +15,27 @@ public class WeatherUtil {
     public static final String WEATHERURL1 = "https://www.sojson.com/open/api/weather/xml.shtml?city=%s";
     public static final String WEATHERURL = "http://wthrcdn.etouch.cn/WeatherApi?city=%s";
 
-    public static String weiXinTongzhiGonggaoWeather(String city) throws Exception {
-
+    /**
+     *  获取多个城市的天气
+     * @param cityList 城市数组
+     * @return
+     */
+    public Map getWeatherList(List<String> cityList) throws Exception {
+        Map<String,String> cityWeatherMap = new HashMap<>();
+        if(cityList.size() > 0){
+            for(String city : cityList){
+                cityWeatherMap.put(city,getCityWeather(city));
+            }
+        }
+        return cityWeatherMap;
+    }
+    /**
+     * 获取单个城市的天气
+     * @param city 城市或县或区
+     * @return
+     * @throws Exception
+     */
+    public static String getCityWeather(String city) throws Exception {
         StringBuilder builder = new StringBuilder();
         //获取当前日期
         Date date = DateUtil.parseDate(System.currentTimeMillis());
@@ -51,15 +70,17 @@ public class WeatherUtil {
         builder.append(high.trim());
         builder.append("[拥抱]\n");
         //获取 environment
-        JSONObject environment = (JSONObject) weather.get("environment");
-        //    空气质量：良
-        builder.append("空气质量：");
-        builder.append(environment.get("quality"));
-        builder.append("[调皮]\n");
-        //    PM2.5：69
-        builder.append("PM2.5：");
-        builder.append(environment.get("pm25"));
-        builder.append("[调皮]\n");
+        if(weather.has("environment")){
+            JSONObject environment = (JSONObject) weather.get("environment");
+            //    空气质量：良
+            builder.append("空气质量：");
+            builder.append(environment.get("quality"));
+            builder.append("[调皮]\n");
+            //    PM2.5：69
+            builder.append("PM2.5：");
+            builder.append(environment.get("pm25"));
+            builder.append("[调皮]\n");
+        }
         return builder.toString();
     }
     /**
