@@ -18,7 +18,7 @@ public class WeatherUtil {
     /**
      *  获取多个城市的天气
      * @param cityList 城市数组
-     * @return
+     * @return 返回map
      */
     public Map getWeatherList(List<String> cityList) throws Exception {
         Map<String,String> cityWeatherMap = new HashMap<>();
