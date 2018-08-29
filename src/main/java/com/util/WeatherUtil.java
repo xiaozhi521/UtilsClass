@@ -11,8 +11,9 @@ import java.util.*;
 import java.util.zip.GZIPInputStream;
 
 public class WeatherUtil {
-
+    //未使用
     public static final String WEATHERURL1 = "https://www.sojson.com/open/api/weather/xml.shtml?city=%s";
+    //使用
     public static final String WEATHERURL = "http://wthrcdn.etouch.cn/WeatherApi?city=%s";
 
     /**
@@ -40,6 +41,9 @@ public class WeatherUtil {
         //获取当前日期
         Date date = DateUtil.parseDate(System.currentTimeMillis());
         JSONObject weather = (JSONObject) getWeatherXMLFormatJSON(city).get("resp");
+        if(!weather.has("forecast")){
+            return "";
+        }
         //获取当天的天气
         JSONObject currentDayWeather = (JSONObject) ((JSONObject) weather.get("forecast")).getJSONArray("weather").get(0);
         if (!StringUtil.isEmpty(currentDayWeather.get("date"))){
