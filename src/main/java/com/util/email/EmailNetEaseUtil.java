@@ -1,4 +1,4 @@
-package com.util;
+package com.util.email;
 
 import java.io.FileOutputStream;
 import java.util.Properties;
@@ -11,6 +11,9 @@ import javax.mail.Transport;
 import javax.mail.internet.*;
 
 public class EmailUtil {
+    public static void main(String[] args) throws Exception {
+        sendEmail("attachMail","smtp.163.com","发件人邮箱","发件人邮箱密码","收件人邮箱");
+    }
     /**
      *  发送邮件入口
      * @param emailType
