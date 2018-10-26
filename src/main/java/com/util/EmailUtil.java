@@ -12,12 +12,7 @@ import javax.mail.internet.*;
 
 public class EmailUtil {
 
-    public static void main(String[] args) throws Exception {
-//        for(int i = 0; i < 50; i++){
-            sendEmail("mixedMail","smtp.163.com","xxxxxx@163.com","xxxxxx","xxxxxxx@qq.com");
-//        }
 
-    }
 
     public static void sendEmail(String emailType,String host,String userFrom,String password,String userTo) throws Exception {
         Properties prop = new Properties();
