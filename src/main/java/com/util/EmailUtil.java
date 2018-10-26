@@ -11,6 +11,15 @@ import javax.mail.Transport;
 import javax.mail.internet.*;
 
 public class EmailUtil {
+    /**
+     *  发送邮件入口
+     * @param emailType
+     * @param host
+     * @param userFrom
+     * @param password
+     * @param userTo
+     * @throws Exception
+     */
     public static void sendEmail(String emailType,String host,String userFrom,String password,String userTo) throws Exception {
         Properties prop = new Properties();
         prop.setProperty("mail.host", host);
