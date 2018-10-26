@@ -14,7 +14,7 @@ public class EmailUtil {
 
     public static void main(String[] args) throws Exception {
 //        for(int i = 0; i < 50; i++){
-            sendEmail("mixedMail","smtp.163.com","XXXXX@163.com","XXXX","1XXXXXX@qq.com");
+            sendEmail("mixedMail","smtp.163.com","xxxxxx@163.com","xxxxxx","xxxxxxx@qq.com");
 //        }
 
     }
