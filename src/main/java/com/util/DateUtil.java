@@ -68,6 +68,22 @@ public class DateUtil {
         return cal.get(Calendar.YEAR) + "年" + (cal.get(Calendar.MONTH)+1) + "月" + cal.get(Calendar.DAY_OF_MONTH) + "日  " + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE )+ ":" + cal.get(Calendar.SECOND);
     }
     /**
+     * 获取当前的时间 年月日时： 201893012
+     * @return
+     */
+    public static String getCurrentDateForYearToHour(){
+        StringBuilder stringBuilder = new StringBuilder();
+        return stringBuilder.append(cal.get(Calendar.YEAR)).append(cal.get(Calendar.MONTH)+1).append(cal.get(Calendar.DAY_OF_MONTH)).append(cal.get(Calendar.HOUR_OF_DAY)).toString();
+    }
+    /**
+     * 获取当前的时间 年月日： 2018930
+     * @return
+     */
+    public static String getCurrentDateForYearToDay(){
+        StringBuilder stringBuilder = new StringBuilder();
+        return stringBuilder.append(cal.get(Calendar.YEAR)).append(cal.get(Calendar.MONTH)+1).append(cal.get(Calendar.DAY_OF_MONTH)).toString();
+    }
+    /**
      * 获取当前分钟中的秒
      * @return
      */

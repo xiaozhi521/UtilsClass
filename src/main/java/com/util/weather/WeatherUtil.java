@@ -1,7 +1,9 @@
-package com.util;
+package com.util.weather;
 
 import java.io.*;
 
+import com.util.DateUtil;
+import com.util.StringUtil;
 import org.json.JSONObject;
 import org.json.XML;
 
@@ -48,6 +50,8 @@ public class WeatherUtil {
         JSONObject currentDayWeather = (JSONObject) ((JSONObject) weather.get("forecast")).getJSONArray("weather").get(0);
         if (!StringUtil.isEmpty(currentDayWeather.get("date"))){
             builder.append("[呲牙]");
+            builder.append(DateUtil.getYear());
+            builder.append("年");
             builder.append(DateUtil.getMonth(date));
             builder.append("月");
             builder.append(currentDayWeather.get("date"));
