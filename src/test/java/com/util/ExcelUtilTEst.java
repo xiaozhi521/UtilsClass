@@ -3,7 +3,7 @@ package com.util;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bean.Person;
-import com.util.file.ExcelUtil;
+import com.util.excel.ExcelReadUtil;
 import org.junit.Test;
 
 import java.io.File;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ExcelUtilTEst {
     @Test
     public void readExcel(){
-        ArrayList list =  ExcelUtil.readExcel(new File("E:\\idea\\UtilsClass\\src\\main\\testfile\\test.xls"));
+        ArrayList list =  ExcelReadUtil.readExcel(new File("E:\\idea\\UtilsClass\\src\\main\\testfile\\test.xls"));
         System.out.println(list);
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray = new JSONArray();
