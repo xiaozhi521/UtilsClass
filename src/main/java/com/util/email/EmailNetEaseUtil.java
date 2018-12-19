@@ -91,7 +91,6 @@ public class EmailNetEaseUtil {
      * @throws Exception
      * @Method: createImageMail
      * @Description: 生成一封邮件正文带图片的邮件
-     * @Anthor:孤傲苍狼
      */
     public static MimeMessage createImageMail(Session session,String userFrom,String userTo) throws Exception {
         //创建邮件

@@ -7,6 +7,7 @@ import jxl.write.*;
 import jxl.write.Label;
 import jxl.write.Number;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -141,6 +142,44 @@ public class ExcelWriteUtil {
             }
         }
     }
+
+
+    /**
+     *  获取自定义表格颜色
+     * @param strColor
+     * @return
+     */
+    public static jxl.format.Colour getNearestColour(String strColor) {
+        Color cl = Color.decode(strColor);
+        jxl.format.Colour color = null;
+        jxl.format.Colour[] colors = jxl.format.Colour.getAllColours();
+        if ((colors != null) && (colors.length > 0)) {
+            jxl.format.Colour crtColor = null;
+            int[] rgb = null;
+            int diff = 0;
+            int minDiff = 999;
+            for (int i = 0; i < colors.length; i++) {
+                crtColor = colors[i];
+                rgb = new int[3];
+                rgb[0] = crtColor.getDefaultRGB().getRed();
+                rgb[1] = crtColor.getDefaultRGB().getGreen();
+                rgb[2] = crtColor.getDefaultRGB().getBlue();
+
+                diff = Math.abs(rgb[0] - cl.getRed())
+                        +Math.abs(rgb[1] - cl.getGreen())
+                        +Math.abs(rgb[2] - cl.getBlue());
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    color = crtColor;
+                }
+            }
+        }
+        if (color == null)
+            color = jxl.format.Colour.BLACK;
+        return color;
+    }
+
+
 
     public static void main(String[] args) {
         createExcel(new File("E:\\excel\\test" + System.currentTimeMillis() +".xls"),arrayList);
