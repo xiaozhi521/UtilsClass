@@ -157,4 +157,63 @@ public class DateUtil {
     public static final Date parseDate(long milliSeconds) {
         return new Date(milliSeconds);
     }
+
+
+    /**
+     * 获取指定年月的天数
+     * @param year
+     * @param month
+     * @return 一月的天数
+     */
+    public static int getDayOfMonth(int year,int month){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DATE, 1);
+        calendar.roll(Calendar.DATE, -1);
+        return calendar.get(Calendar.DATE);
+    }
+    /**
+     * 获取指定年月的天数
+     * @param date
+     * @return 一月的天数
+     */
+    public static int getDayOfMonth(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.get(Calendar.DATE);
+    }
+
+    /**
+     * 返回当前时间是周几 0是周日，
+     *   1 2 3 4 5 6 7
+     *   7 1 2 3 4 5 6
+     * @return
+     */
+    public static int getDayOfWeek(){
+        return cal.get(Calendar.DAY_OF_WEEK) - 1 == 0 ? 7 : cal.get(Calendar.DAY_OF_WEEK) - 1;
+    }
+    /**
+     * 返回当前时间是周几 0是周日，
+     * @return
+     */
+    public static int getDayOfWeek(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.get(Calendar.DAY_OF_WEEK) - 1 == 0 ? 7 : calendar.get(Calendar.DAY_OF_WEEK) - 1;
+    }
+    /**
+     * 获取指定年月日是周几
+     * @param year
+     * @param month
+     * @return
+     */
+    public static int getDayOfWeek(int year,int month,int day){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DATE, day);
+        return calendar.get(Calendar.DATE);
+    }
+
 }
